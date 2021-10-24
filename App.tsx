@@ -4,20 +4,24 @@ import { ThemeProvider } from 'styled-components/native';
 import AppLoading from 'expo-app-loading';
 import { 
   useFonts,
-  Poppins_400Regular, 
-  Poppins_500Medium, 
-  Poppins_700Bold 
-} from '@expo-google-fonts/poppins';
+  Montserrat_400Regular, 
+  Montserrat_500Medium,
+  Montserrat_600SemiBold, 
+  Montserrat_700Bold 
+} from '@expo-google-fonts/montserrat';
 
 import theme from './src/global/styles/theme'
 
 import { Dashboard } from './src/screens/Dashboard';
+import { Register } from './src/screens/Register';
+import { TransferContact } from './src/screens/TransferContact';
 
 export default function App() {
   const [fontLoaded] = useFonts({
-    Poppins_400Regular,
-    Poppins_500Medium,
-    Poppins_700Bold
+    Montserrat_400Regular,
+    Montserrat_500Medium,
+    Montserrat_600SemiBold,
+    Montserrat_700Bold
   });
 
   if (!fontLoaded){
@@ -26,7 +30,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <TransferContact />
     </ThemeProvider>
   );
 }
