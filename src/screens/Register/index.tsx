@@ -25,11 +25,13 @@ export var Register = function () {
               title="Incoming"
               type="up"
               onPress={() => handleTransactionsTypeSelect('up')}
+              isActive={transactionType === 'up'}
             />
             <TransactionTypeButton
               title="Outcome"
               type="down"
               onPress={() => handleTransactionsTypeSelect('down')}
+              isActive={transactionType === 'down'}
             />
           </TransactionsTypes>
         </Fields>
