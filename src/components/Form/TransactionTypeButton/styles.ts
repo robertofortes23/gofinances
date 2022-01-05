@@ -22,7 +22,7 @@ export const Container = styled.TouchableOpacity<ButtonProps>`
 
   border-width: 1.5px;
   border: 1px solid ${({ theme }) => theme.colors.text};
-  border-radius: ${RFPercentage(5)}px;
+  border-radius: ${RFPercentage(1)}px;
   padding: ${RFPercentage(2)}px;
   ${({ isActive, type }) =>
     isActive &&
