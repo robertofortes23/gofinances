@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import AppLoading from 'expo-app-loading';
 import {
@@ -28,7 +29,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppRoutes />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
