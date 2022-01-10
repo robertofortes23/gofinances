@@ -1,7 +1,10 @@
 import React from 'react';
 
 import { HighlightCard } from '../../components/HighlightCard';
-import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
+import {
+  TransactionCard,
+  TransactionCardProps,
+} from '../../components/TransactionCard';
 
 import {
   Container,
@@ -17,9 +20,11 @@ import {
   Transactions,
   Title,
   TransactionList,
+  LogoutButton,
 } from './styles';
 
-export interface DataListProps extends TransactionCardProps {
+export interface DataListProps
+  extends TransactionCardProps {
   id: string;
 }
 
@@ -65,18 +70,26 @@ export function Dashboard() {
       <Header>
         <UserWrapper>
           <UserInfo>
-            <Photo source={{ uri: 'https://github.com/robertofortes23.png' }} />
+            <Photo
+              source={{
+                uri: 'https://github.com/robertofortes23.png',
+              }}
+            />
             <User>
               <UserGreeting>Olá, </UserGreeting>
               <UserName>Roberto</UserName>
             </User>
           </UserInfo>
-
-          <Icon name="power" />
+          <LogoutButton onPress={() => {}}>
+            <Icon name="power" />
+          </LogoutButton>
         </UserWrapper>
       </Header>
 
-      <HighlightCards horizontal showsHorizontalScrollIndicator={false}>
+      <HighlightCards
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
         <HighlightCard
           title="Entradas"
           amount="R$ 17.400,00"
@@ -102,7 +115,9 @@ export function Dashboard() {
         <TransactionList
           data={data}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <TransactionCard data={item} />}
+          renderItem={({ item }) => (
+            <TransactionCard data={item} />
+          )}
         />
       </Transactions>
     </Container>
