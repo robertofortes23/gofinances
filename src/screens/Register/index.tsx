@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import {
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+} from 'react-native';
 
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,7 +20,14 @@ import { CategorySelectButton } from '../../components/Form/CategorySelectButton
 
 import { CategorySelect } from '../CategorySelect';
 
-import { Container, Header, Title, Form, Fields, TransactionsTypes } from './styles';
+import {
+  Container,
+  Header,
+  Title,
+  Form,
+  Fields,
+  TransactionsTypes,
+} from './styles';
 
 interface FormData {
   name: string;
@@ -60,9 +72,11 @@ export var Register = function () {
   }
 
   function handleRegister(form: FormData) {
-    if (!transactionType) return Alert.alert('Selecione o tipo da transação');
+    if (!transactionType)
+      return Alert.alert('Selecione o tipo da transação');
 
-    if (category.key === 'category') return Alert.alert('Selecione a categoria');
+    if (category.key === 'category')
+      return Alert.alert('Selecione a categoria');
 
     const data = {
       name: form.name,
@@ -70,7 +84,10 @@ export var Register = function () {
       transactionType,
       category: category.key,
     };
-    console.log('🚀 ~ file: index.tsx ~ line 73 ~ handleRegister ~ data', data);
+    console.log(
+      '🚀 ~ file: index.tsx ~ line 73 ~ handleRegister ~ data',
+      data
+    );
   }
 
   return (
@@ -116,7 +133,10 @@ export var Register = function () {
               onPress={handleOpenSelectCategoryModal}
             />
           </Fields>
-          <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
+          <Button
+            title="Enviar"
+            onPress={handleSubmit(handleRegister)}
+          />
         </Form>
 
         <Modal visible={categoryModalOpen}>
