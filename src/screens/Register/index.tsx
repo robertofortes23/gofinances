@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   TouchableWithoutFeedback,
@@ -14,6 +14,8 @@ import { useForm } from 'react-hook-form';
 import { Button } from '../../components/Form/Button';
 import { Input } from '../../components/Form/Input';
 import { InputForm } from '../../components/Form/InputForm';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton';
 import { CategorySelectButton } from '../../components/Form/CategorySelectButton';
@@ -42,9 +44,11 @@ const schema = Yup.object().shape({
     .required('O valor é obrigatório'),
 });
 
-export var Register = function () {
+export function Register() {
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+
+  const dataKey = '@rgfgofinances:transactions';
 
   const [category, setCategory] = useState({
     key: 'category',
@@ -71,7 +75,7 @@ export var Register = function () {
     setCategoryModalOpen(true);
   }
 
-  function handleRegister(form: FormData) {
+  async function handleRegister(form: FormData) {
     if (!transactionType)
       return Alert.alert('Selecione o tipo da transação');
 
@@ -84,11 +88,29 @@ export var Register = function () {
       transactionType,
       category: category.key,
     };
+
+    try {
+      await AsyncStorage.setItem(dataKey, JSON.stringify(data));
+    } catch (error) {
+      console.log(
+        '🚀 ~ file: index.tsx ~ line 91 ~ handleRegister ~ error',
+        error
+      );
+      Alert.alert('Erro ao cadastrar item');
+    }
+
     console.log(
       '🚀 ~ file: index.tsx ~ line 73 ~ handleRegister ~ data',
       data
     );
   }
+
+  useEffect(() => {
+    async function loadData() {
+      const data = await AsyncStorage.getItem(dataKey);
+    }
+    loadData();
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -149,4 +171,4 @@ export var Register = function () {
       </Container>
     </TouchableWithoutFeedback>
   );
-};
+}
