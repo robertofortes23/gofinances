@@ -10,8 +10,7 @@ interface CategoryProps {
 
 export const Container = styled(GestureHandlerRootView)`
   flex: 1;
-  background-color: ${({ theme }) =>
-    theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
 `;
 
 export const Header = styled.View`

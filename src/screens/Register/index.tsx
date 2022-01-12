@@ -50,8 +50,6 @@ export function Register() {
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-  const dataKey = '@rgfgofinances:transactions';
-
   const [category, setCategory] = useState({
     key: 'category',
     name: 'Categoria',
@@ -97,10 +95,16 @@ export function Register() {
     };
 
     try {
+      const dataKey = '@rgfgofinances:transactions';
+
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 
       const dataFormatted = [...currentData, newData];
+      console.log(
+        '🚀 ~ file: index.tsx ~ line 104 ~ handleRegister ~ dataFormatted',
+        dataFormatted
+      );
 
       await AsyncStorage.setItem(
         dataKey,
@@ -121,10 +125,10 @@ export function Register() {
   }
 
   useEffect(() => {
-    async function loadData() {
-      const data = await AsyncStorage.getItem(dataKey);
-    }
-    loadData();
+    // async function loadData() {
+    //   const data = await AsyncStorage.getItem(dataKey);
+    // }
+    // loadData();
   }, []);
 
   return (
