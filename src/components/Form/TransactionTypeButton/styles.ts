@@ -34,8 +34,7 @@ export const Container = styled.TouchableOpacity<ButtonProps>`
     isActive &&
     type === 'down' &&
     css`
-      background-color: ${({ theme }) =>
-        theme.colors.attention_light};
+      background-color: ${({ theme }) => theme.colors.attention_light};
       border: none;
     `};
 `;

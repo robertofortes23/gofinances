@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Modal,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Alert,
-} from 'react-native';
+import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,14 +19,7 @@ import { CategorySelectButton } from '../../components/Form/CategorySelectButton
 
 import { CategorySelect } from '../CategorySelect';
 
-import {
-  Container,
-  Header,
-  Title,
-  Form,
-  Fields,
-  TransactionsTypes,
-} from './styles';
+import { Container, Header, Title, Form, Fields, TransactionsTypes } from './styles';
 
 interface FormData {
   name: string;
@@ -66,9 +54,7 @@ export function Register() {
     resolver: yupResolver(schema),
   });
 
-  function handleTransactionsTypeSelect(
-    type: 'positive' | 'negative'
-  ) {
+  function handleTransactionsTypeSelect(type: 'positive' | 'negative') {
     setTransactionType(type);
   }
 
@@ -81,11 +67,9 @@ export function Register() {
   }
 
   async function handleRegister(form: FormData) {
-    if (!transactionType)
-      return Alert.alert('Selecione o tipo da transação');
+    if (!transactionType) return Alert.alert('Selecione o tipo da transação');
 
-    if (category.key === 'category')
-      return Alert.alert('Selecione a categoria');
+    if (category.key === 'category') return Alert.alert('Selecione a categoria');
 
     const newData = {
       id: String(uuid.v4()),
@@ -108,10 +92,7 @@ export function Register() {
         dataFormatted
       );
 
-      await AsyncStorage.setItem(
-        dataKey,
-        JSON.stringify(dataFormatted)
-      );
+      await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
 
       reset();
       setTransactionType('');
@@ -160,17 +141,13 @@ export function Register() {
               <TransactionTypeButton
                 title="Incoming"
                 type="up"
-                onPress={() =>
-                  handleTransactionsTypeSelect('positive')
-                }
+                onPress={() => handleTransactionsTypeSelect('positive')}
                 isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 title="Outcome"
                 type="down"
-                onPress={() =>
-                  handleTransactionsTypeSelect('negative')
-                }
+                onPress={() => handleTransactionsTypeSelect('negative')}
                 isActive={transactionType === 'negative'}
               />
             </TransactionsTypes>
@@ -180,10 +157,7 @@ export function Register() {
               onPress={handleOpenSelectCategoryModal}
             />
           </Fields>
-          <Button
-            title="Enviar"
-            onPress={handleSubmit(handleRegister)}
-          />
+          <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
         </Form>
 
         <Modal visible={categoryModalOpen}>

@@ -23,12 +23,7 @@ export var TransactionTypeButton = function ({
   ...rest
 }: Props) {
   return (
-    <Container
-      isActive={isActive}
-      type={type}
-      onPress={onPress}
-      {...rest}
-    >
+    <Container isActive={isActive} type={type} onPress={onPress} {...rest}>
       <Icon name={icons[type]} type={type} />
       <Title>{title}</Title>
     </Container>

@@ -28,7 +28,8 @@ export const Title = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
 
-  color: ${({ theme, type }) => (type === 'total' ? theme.colors.shape : theme.colors.text_dark)};
+  color: ${({ theme, type }) =>
+    type === 'total' ? theme.colors.shape : theme.colors.text_dark};
 `;
 
 export const Icon = styled(Feather)<TypeProps>`
@@ -59,7 +60,8 @@ export const Amount = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(32)}px;
 
-  color: ${({ theme, type }) => (type === 'total' ? theme.colors.shape : theme.colors.text_dark)};
+  color: ${({ theme, type }) =>
+    type === 'total' ? theme.colors.shape : theme.colors.text_dark};
 
   margin-top: 38px;
 `;
@@ -68,5 +70,6 @@ export const LastTransaction = styled.Text<TypeProps>`
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(12)}px;
 
-  color: ${({ theme, type }) => (type === 'total' ? theme.colors.shape : theme.colors.text)};
+  color: ${({ theme, type }) =>
+    type === 'total' ? theme.colors.shape : theme.colors.text};
 `;

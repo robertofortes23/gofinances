@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { Container, Header, Title, Icon, Footer, Amount, LastTransaction } from './styles';
+import {
+  Container,
+  Header,
+  Title,
+  Icon,
+  Footer,
+  Amount,
+  LastTransaction,
+} from './styles';
 
 interface Props {
   type: 'up' | 'down' | 'total';
