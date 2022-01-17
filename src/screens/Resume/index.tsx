@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { Text } from 'react-native';
 
 import { VictoryPie } from 'victory-native';
 
@@ -77,8 +79,13 @@ export function Resume() {
         });
       }
     });
-    setTotalByCategories(totalByCategories);
+    setTotalByCategories(totalByCategory);
   }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -102,6 +109,7 @@ export function Resume() {
             y="total"
           />
         </ChartContainer>
+
         {totalByCategories.map((item) => (
           <HistoryCard
             key={item.key}
