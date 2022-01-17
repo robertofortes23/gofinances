@@ -48,7 +48,9 @@ export const MonthSelectButton = styled(BorderlessButton)`
   font-size: ${RFValue(24)}px;
 `;
 
-export const MonthSelectIcon = styled(Feather)``;
+export const MonthSelectIcon = styled(Feather)`
+  font-size: ${RFValue(24)}px;
+`;
 
 export const Month = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
