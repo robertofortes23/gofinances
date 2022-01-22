@@ -5,7 +5,7 @@ import 'intl/locale-data/jsonp/pt-BR';
 import React from 'react';
 
 import { ThemeProvider } from 'styled-components/native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/routes';
 
 import AppLoading from 'expo-app-loading';
 import {
@@ -36,12 +36,10 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <StatusBar barStyle="light-content" />
-        <AuthProvider>
-          <AppRoutes />
-        </AuthProvider>
-      </NavigationContainer>
+      <StatusBar barStyle="light-content" />
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

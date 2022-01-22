@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext } from 'react';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 const { CLIENT_ID } = process.env;
 const { REDIRECT_URI } = process.env;
@@ -36,12 +36,17 @@ interface AuthorizationResponse {
 
 const AuthContext = createContext({} as IAuthContextData);
 
+const [user, setUser] = useState<User>({} as User);
+const [userStorageLoading, setUserStorageLoading] = useState(true);
+
 function AuthProvider({ children }: AuthProviderProps) {
   const user = {
     id: '23',
     name: 'Roberto',
     email: 'roberto.fortes23@gmail.com',
   };
+
+  const userStorageKey = '@rgfgofinances:user';
 
   async function signInWithGoogle() {
     try {
@@ -57,6 +62,13 @@ function AuthProvider({ children }: AuthProviderProps) {
       if (type === 'success') {
         const response = await fetch('');
         const userInfo = await response.json();
+
+        setUser({
+          id: userInfo.id,
+          name: userInfo.name,
+          email: userInfo.email,
+          photo: userInfo.picture,
+        });
       }
     } catch (error) {
       throw new Error(String(error));
@@ -79,10 +91,25 @@ function AuthProvider({ children }: AuthProviderProps) {
           email: credential.email!,
           photo: undefined,
         };
-        await AsyncStorage.setItem('@rgfgofinances:user', JSON.stringify(userLogged));
+        setUser(userLogged);
+        await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
       }
     } catch (error) {}
   }
+
+  useEffect(() => {
+    async function loadUserStorageDate() {
+      const userStoraged = await AsyncStorage.getItem(userStorageKey);
+
+      if (userStoraged) {
+        const userLogged = JSON.parse(userStoraged) as User;
+        setUser(userLogged);
+      }
+      setUserStorageLoading(false);
+    }
+
+    loadUserStorageDate();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle, signInWithApple }}>
