@@ -1,4 +1,6 @@
 import React, { createContext, ReactNode, useContext } from 'react';
+import * as AuthSession from 'expo-auth-session';
+import { AuthSessionResult } from 'expo-auth-session';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -13,6 +15,14 @@ interface User {
 
 interface IAuthContextData {
   user: User;
+  signInWithGoogle(): Promise<void>;
+}
+
+interface AuthorizationResponse {
+  params: {
+    access_token: string;
+  };
+  type: string;
 }
 
 const AuthContext = createContext({} as IAuthContextData);
@@ -23,7 +33,34 @@ function AuthProvider({ children }: AuthProviderProps) {
     name: 'Roberto',
     email: 'roberto.fortes23@gmail.com',
   };
-  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
+
+  async function signInWithGoogle() {
+    try {
+      const CLIENT_ID = '';
+      const REDIRECT_URL = '';
+      const RESPONSE_TYPE = '';
+      const SCOPE = '';
+
+      const authUrl = '';
+
+      const { type, params } = AuthSession.startAsync({
+        authUrl,
+      }) as AuthorizationResponse & Promise<AuthSessionResult>;
+
+      if (type === 'success') {
+        const response = await fetch('');
+        const userInfo = await response.json();
+      }
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  }
+
+  return (
+    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 function useAuth() {
