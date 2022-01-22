@@ -24,6 +24,8 @@ import {
 } from './styles';
 import { useFocusEffect } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native';
+import { useAuth } from '../../hooks/auth';
+import { useTheme } from 'styled-components';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -44,6 +46,9 @@ export function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
+
+  const theme = useTheme();
+  const { signOut, user } = useAuth();
 
   function getLastTransaction(
     collection: DataListProps[],
@@ -151,7 +156,7 @@ export function Dashboard() {
     <Container>
       {isLoading ? (
         <LoadContainer>
-          <ActivityIndicator color="red" />
+          <ActivityIndicator color={theme.colors.primary} />
         </LoadContainer>
       ) : (
         <>
@@ -160,15 +165,15 @@ export function Dashboard() {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: 'https://github.com/robertofortes23.png',
+                    uri: user.photo,
                   }}
                 />
                 <User>
                   <UserGreeting>Olá, </UserGreeting>
-                  <UserName>Roberto</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>

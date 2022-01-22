@@ -25,6 +25,8 @@ interface IAuthContextData {
   user: User;
   signInWithGoogle(): Promise<void>;
   signInWithApple(): Promise<void>;
+  signOut(): Promise<void>;
+  userStorageLoading: boolean;
 }
 
 interface AuthorizationResponse {
@@ -34,18 +36,19 @@ interface AuthorizationResponse {
   type: string;
 }
 
+const userData = {
+  id: '23',
+  name: 'Roberto',
+  email: 'roberto.fortes23@gmail.com',
+  photo: 'https://github.com/robertofortes23.png',
+};
+
 const AuthContext = createContext({} as IAuthContextData);
 
-const [user, setUser] = useState<User>({} as User);
+const [user, setUser] = useState<User>(userData as User);
 const [userStorageLoading, setUserStorageLoading] = useState(true);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const user = {
-    id: '23',
-    name: 'Roberto',
-    email: 'roberto.fortes23@gmail.com',
-  };
-
   const userStorageKey = '@rgfgofinances:user';
 
   async function signInWithGoogle() {
@@ -89,12 +92,18 @@ function AuthProvider({ children }: AuthProviderProps) {
           id: String(credential.user),
           name: credential.fullName!.givenName!,
           email: credential.email!,
-          photo: undefined,
+          photo: ` https://ui-avatars.com/api/?name=${credential.fullName!
+            .givenName!}&length=1`,
         };
         setUser(userLogged);
         await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
       }
     } catch (error) {}
+  }
+
+  async function signOut() {
+    setUser({} as User);
+    await AsyncStorage.removeItem(userStorageKey);
   }
 
   useEffect(() => {
@@ -112,7 +121,9 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle, signInWithApple }}>
+    <AuthContext.Provider
+      value={{ user, signInWithGoogle, signInWithApple, signOut, userStorageLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
