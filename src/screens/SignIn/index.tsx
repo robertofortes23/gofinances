@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components/native';
 
 import AppleSvg from '../../assets/apple.svg';
 import GoogleSvg from '../../assets/google.svg';
-import LogoSvg from '../../assets/logoSvg.svg';
+import LogoSvg from '../../assets/logo.svg';
 import { SignInSocialButton } from '../../components/SignInSocialButton';
 import { useAuth } from '../../hooks/auth';
 

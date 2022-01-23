@@ -26,7 +26,7 @@ interface IAuthContextData {
   signInWithGoogle(): Promise<void>;
   signInWithApple(): Promise<void>;
   signOut(): Promise<void>;
-  userStorageLoading: boolean;
+  isLoading: boolean;
 }
 
 interface AuthorizationResponse {
@@ -45,10 +45,9 @@ const userData = {
 
 const AuthContext = createContext({} as IAuthContextData);
 
-const [user, setUser] = useState<User>(userData as User);
-const [userStorageLoading, setUserStorageLoading] = useState(true);
-
 function AuthProvider({ children }: AuthProviderProps) {
+  const [user, setUser] = useState<User>(userData as User);
+  const [isLoading, setIsLoading] = useState(true);
   const userStorageKey = '@rgfgofinances:user';
 
   async function signInWithGoogle() {
@@ -66,12 +65,12 @@ function AuthProvider({ children }: AuthProviderProps) {
         const response = await fetch('');
         const userInfo = await response.json();
 
-        setUser({
-          id: userInfo.id,
-          name: userInfo.name,
-          email: userInfo.email,
-          photo: userInfo.picture,
-        });
+        // setUser({
+        //   id: userInfo.id,
+        //   name: userInfo.name,
+        //   email: userInfo.email,
+        //   photo: userInfo.picture,
+        // });
       }
     } catch (error) {
       throw new Error(String(error));
@@ -95,14 +94,14 @@ function AuthProvider({ children }: AuthProviderProps) {
           photo: ` https://ui-avatars.com/api/?name=${credential.fullName!
             .givenName!}&length=1`,
         };
-        setUser(userLogged);
+        // setUser(userLogged);
         await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
       }
     } catch (error) {}
   }
 
   async function signOut() {
-    setUser({} as User);
+    // setUser({} as User);
     await AsyncStorage.removeItem(userStorageKey);
   }
 
@@ -112,9 +111,9 @@ function AuthProvider({ children }: AuthProviderProps) {
 
       if (userStoraged) {
         const userLogged = JSON.parse(userStoraged) as User;
-        setUser(userLogged);
+        // setUser(userLogged);
       }
-      setUserStorageLoading(false);
+      setIsLoading(false);
     }
 
     loadUserStorageDate();
@@ -122,7 +121,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ user, signInWithGoogle, signInWithApple, signOut, userStorageLoading }}
+      value={{ user, signInWithGoogle, signInWithApple, signOut, isLoading }}
     >
       {children}
     </AuthContext.Provider>
