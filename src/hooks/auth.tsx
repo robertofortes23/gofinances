@@ -46,7 +46,7 @@ const userData = {
 const AuthContext = createContext({} as IAuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User>(userData as User);
+  const [user, setUser] = useState<User>({} as User);
   const [isLoading, setIsLoading] = useState(true);
   const userStorageKey = '@rgfgofinances:user';
 
@@ -61,16 +61,10 @@ function AuthProvider({ children }: AuthProviderProps) {
         authUrl,
       }) as AuthorizationResponse & Promise<AuthSessionResult>;
 
+      setUser(userData);
       if (type === 'success') {
         const response = await fetch('');
         const userInfo = await response.json();
-
-        // setUser({
-        //   id: userInfo.id,
-        //   name: userInfo.name,
-        //   email: userInfo.email,
-        //   photo: userInfo.picture,
-        // });
       }
     } catch (error) {
       throw new Error(String(error));
@@ -79,6 +73,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   async function signInWithApple() {
     try {
+      setUser(userData);
       const credential = await AppleAuthentication.signInAsync({
         requestedScopes: [
           AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
@@ -94,14 +89,13 @@ function AuthProvider({ children }: AuthProviderProps) {
           photo: ` https://ui-avatars.com/api/?name=${credential.fullName!
             .givenName!}&length=1`,
         };
-        // setUser(userLogged);
         await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
       }
     } catch (error) {}
   }
 
   async function signOut() {
-    // setUser({} as User);
+    setUser({} as User);
     await AsyncStorage.removeItem(userStorageKey);
   }
 
