@@ -69,7 +69,7 @@ export function Dashboard() {
   }
 
   async function loadTransactions() {
-    const dataKey = '@rgfgofinances:transactions';
+    const dataKey = `@rgfgofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
 
