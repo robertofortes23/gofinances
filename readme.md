@@ -7,8 +7,11 @@
 > **Nota**: Gofinances é um aplicativo de finanças pessoais, no qual você pode registrar suas transações e monitorá-las, observado as entradas, saídas, saldo e gastos por categoria e data.
 
 <br>
+
 # Vizualizar aplicativo com Expo Go
+
 ## [Código QR:](https://expo.dev/@robertbernd/gofinances)
+
 <h1 align="center">
   <img alt="GoFinances" title="GoFinances" src=".github/assets/qrcode.png" width="128px" />
 </h1>
