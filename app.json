@@ -3,9 +3,15 @@
     "name": "gofinances",
     "slug": "gofinances",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "description": "Gofinances is a personal finance application, in which you can record your transactions and monitor them, observing your inflows, outflows, balances and expenses by category and date.",
+    "githubUrl": "https://github.com/robertofortes23/gofinances"
   },
-  "name": "gofinances"
+  "name": "gofinances",
+  "icon": "./assets/icon.png",
+  "splash": {
+    "image": "./assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#5636D3"
+  }
 }

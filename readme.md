@@ -12,27 +12,27 @@
 
 ## Login
 
-<img style="width: 200px" align=center src="assets/Screenshot_2022-01-25-20-35-36-703_host.exp.exponent.jpg" />
+<img style="width: 200px" align=center src=".github/assets/Screenshot_2022-01-25-20-35-36-703_host.exp.exponent.jpg" />
 <br>
 
 ## Home
 
-<img style="width: 200px" align=center src="assets/Screenshot_2022-01-25-20-35-51-038_host.exp.exponent.jpg" />
+<img style="width: 200px" align=center src=".github/assets/Screenshot_2022-01-25-20-35-51-038_host.exp.exponent.jpg" />
 <br>
 
 ## Home com uma transação
 
-<img style="width: 200px" align=center src="assets/Screenshot_2022-01-25-20-37-14-323_host.exp.exponent.jpg" />
+<img style="width: 200px" align=center src=".github/assets/Screenshot_2022-01-25-20-37-14-323_host.exp.exponent.jpg" />
 <br>
 
 ## Cadastro
 
-<img style="width: 200px" align=center src="assets/Screenshot_2022-01-25-20-37-33-584_host.exp.exponent.jpg" />
+<img style="width: 200px" align=center src=".github/assets/Screenshot_2022-01-25-20-37-33-584_host.exp.exponent.jpg" />
 <br>
 
 ## Dashboard
 
-<img style="width: 200px" align=center src="assets/Screenshot_2022-01-25-20-38-58-480_host.exp.exponent.jpg" />
+<img style="width: 200px" align=center src=".github/assets/Screenshot_2022-01-25-20-38-58-480_host.exp.exponent.jpg" />
 <br>
 
 ## Tecnologias usadas
