@@ -10,9 +10,10 @@
 
 # Vizualizar aplicativo com Expo Go
 
+<h1 align="center">
+
 ## [Código QR:](https://expo.dev/@robertbernd/gofinances)
 
-<h1 align="center">
   <img alt="GoFinances" title="GoFinances" src=".github/assets/qrcode.png" width="128px" />
 </h1>
 
