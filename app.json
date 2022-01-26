@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#5636D3"
+      "backgroundColor": "#000000"
     }
   },
   "name": "gofinances"
